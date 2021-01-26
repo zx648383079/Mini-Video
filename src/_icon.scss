@@ -9,6 +9,13 @@
     font-style: normal;
 }
 
+.icon-calendar-check:before {
+    content: "\ef5b";
+}
+
+.icon-check:before {
+    content: "\e648";
+}  
 
 .icon-history:before {
     content: "\e6b6";

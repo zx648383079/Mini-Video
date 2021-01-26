@@ -1,7 +1,7 @@
 <template>
     <div>
-        <Navbar title="发布" :autoBack="false" @back="tapBack"/>
-        <div class="main-box" style="margin-top: {{ top }}px;">
+        <EditHeader title="发布" :autoBack="false" @back="tapBack" @submited="tapSubmit(1)"/>
+        <div class="main-box">
             <div class="edit-group">
                 <textarea rows="6" :maxlength="maxSize" placeholder="说点什么……" :value="data.content"
 							placeholder-class="placeholder" bindinput="onValueChange"></textarea>
@@ -226,13 +226,13 @@ page {
 }
 
 .edit-group {
-    background-color: $second;
-    color: $secondText;
+    background-color: #fff;
+    color: #333;
     margin-bottom: 10px;
     position: relative;
     textarea {
         width: 100%;
-        background-color: $second;
+        background-color: #fff;
         padding: 20rpx 0;
         line-height: 20rpx;
         text-indent: 30rpx;
@@ -247,7 +247,7 @@ page {
 .upload-btn {
     width: 200rpx;
     height: 200rpx;
-    background-color: #1e242b;
+    background-color: #eee;
     .add-btn {
         text-align: center;
         line-height: 200rpx;

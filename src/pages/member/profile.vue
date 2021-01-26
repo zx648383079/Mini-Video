@@ -1,7 +1,10 @@
 <template>
     <div>
-        <div class="profile-box" v-if="user">
+         <Navbar title="个人信息"/>
+        <div class="main-box" style="margin-top: {{ top }}px;">
+            <div class="profile-box" v-if="user">
                 <div class="line-item avatar-item" @click="tapAvatar">
+                    <i></i>
                     <span>头像</span>
                     <span class="avatar">
                         <img :src="user.avatar" alt="">
@@ -9,16 +12,19 @@
                     <i class="iconfont icon-chevron-right"></i>
                 </div>
                 <div class="line-item" @click="tapName">
+                    <i></i>
                     <span>昵称</span>
                     <span>{{user.name}}</span>
                     <i class="iconfont icon-chevron-right"></i>
                 </div>
                 <div class="line-item">
+                    <i></i>
                     <span>邮箱</span>
                     <span class="auto-hide">{{user.email}}</span>
                     <i class="iconfont icon-chevron-right"></i>
                 </div>
                 <div class="line-item" @click="tapSex">
+                    <i></i>
                     <span>性别</span>
                     <span>{{sex}}</span>
                     <i class="iconfont icon-chevron-right"></i>
@@ -39,23 +45,15 @@
 
             
             <div class="menu-list">
-                <a class="item" href="password">
-                    修改密码
-                    <i class="iconfont icon-chevron-right" aria-hidden="true"></i>
-                </a>
-                <a class="item" href="/pages/account/driver">
-                    登录设备管理
-                    <i class="iconfont icon-chevron-right" aria-hidden="true"></i>
-                </a>
-                <a class="item" href="/pages/account/cancel">
-                    账户注销
-                    <i class="iconfont icon-chevron-right" aria-hidden="true"></i>
-                </a>
+                <MenuItem title="修改密码" uri="password"/>
+                <MenuItem title="登录设备管理" uri="/pages/account/driver"/>
+                <MenuItem title="账户注销" uri="/pages/account/cancel"/>
             </div>
 
-            <div class="btn del-btn" @click="tapLogout">
+            <div class="btn-primary" @click="tapLogout">
                 退出
             </div>
+        </div>
     </div>
 </template>
 <script lang="ts">
@@ -70,17 +68,22 @@ const app = getApp<IMyApp>();
 const SEX_ITEMS = ['未知', '男', '女'];
 
 interface IPageData {
+    top: number;
     user: IUser|null,
     max: string,
     sex: string,
 }
 @WxJson({
+    usingComponents: {
+        MenuItem: "/components/MenuItem/index"
+    },
     navigationBarTitleText: "个人信息",
     navigationBarBackgroundColor: "#05a6b1",
     navigationBarTextStyle: "white"
 })
 export class Profile extends WxPage<IPageData> {
     public data: IPageData = {
+        top: app.getNavbarHeight(),
         user: null,
         max: '2020-05-19',
         sex: SEX_ITEMS[2]
@@ -174,8 +177,12 @@ export class Profile extends WxPage<IPageData> {
 }
 </script>
 <style lang="scss" scoped>
+@import '../../theme';
 page {
-    background-color: #f4f4f4;
+    background-color: $bg;
+}
+.menu-list {
+    background-color: #fff;
 }
 .profile-box {
     .avatar-item {

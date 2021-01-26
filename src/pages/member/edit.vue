@@ -1,9 +1,6 @@
 <template>
     <div>
-        <div class="large-header">
-            <div class="title">修改{{ title }}</div>
-            <i class="fa fa-check" @click="tapSubmit"></i>
-        </div>
+        <EditHeader title="修改{{ title }}" @submited="tapSubmit"/>
         <div class="input-box">
             <input type="text" placeholder="{{ title }}" required  v-model="value">
         </div>

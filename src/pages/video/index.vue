@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="action-bar">
-                    <div class="avatar">
+                    <div class="avatar" @click="tapUser">
                         <img :src="data.user.avatar" alt="">
                         <div class="follow-icon">
                             <i class="iconfont icon-plus"></i>
@@ -121,6 +121,7 @@ import {
 import { WxPage, WxJson, TouchEvent, Touch } from '../../../typings/wx/lib.vue';
 import { IComment, IVideo, IVideoData } from '../../api/model';
 import { commentList, commentSave, videoLike, videoList } from '../../api/video';
+import { SET_VIDEO_HISTORY } from '../../utils/types';
 
 const app = getApp<IMyApp>();
 
@@ -261,6 +262,28 @@ export class Index extends WxPage<IPageData> {
         }
     }
 
+    public tapUser() {
+        if (!this.data.data) {
+            return;
+        }
+        wx.navigateTo({
+            url: '/pages/video/user?id=' + this.data.data.user_id,
+        });
+    }
+
+    public setHistory(id: number) {
+        if (!id) {
+            return;
+        }
+        let data = wx.getStorageSync(SET_VIDEO_HISTORY);
+        if (!data) {
+            data = [id];
+        } else if (data.indexOf(id) < 0) {
+            data.push(id);
+        }
+        wx.setStorageSync(SET_VIDEO_HISTORY, data);
+    }
+
     public onMoveStart(e: TouchEvent) {
         const target = e.touches[0] as Touch;
         this.setData({
@@ -382,6 +405,7 @@ export class Index extends WxPage<IPageData> {
     }
 
     public onVideoEnded() {
+        this.setHistory(this.data.data?.id as number);
         this.tapNext();
     }
 
@@ -534,7 +558,7 @@ export class Index extends WxPage<IPageData> {
 <style lang="scss" scoped>
 @import '../../theme';
 page {
-    background-color: $bg;
+    background-color: $primary;
     color: #fff;
 }
 .nav-top {

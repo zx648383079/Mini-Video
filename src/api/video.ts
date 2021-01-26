@@ -1,5 +1,5 @@
 import { deleteRequest, fetch, post } from "../utils/http";
-import { IComment, IDataOne, IMusic, IPage, IVideo } from "./model";
+import { IComment, IDataOne, IMusic, IPage, IUser, IVideo } from "./model";
 
 
 export const musicList = (params: any) => fetch<IPage<IMusic>>('video/music', params);
@@ -7,6 +7,8 @@ export const musicList = (params: any) => fetch<IPage<IMusic>>('video/music', pa
 export const videoList = (params: any) => fetch<IPage<IVideo>>('video/video', params);
 
 export const videoMoreList = (params: any) => fetch<IPage<IVideo>>('video/video/more', params);
+
+export const videoUser = (id: number) => fetch<IUser>('video/video/user', {id});
 
 export const videoSave = (data: any) => post<IVideo>('video/video/save', data);
 export const videoLike = (id: number) => post<IVideo>('video/video/like', {id});

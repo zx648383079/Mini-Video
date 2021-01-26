@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Navbar :title="title"/>
         <div style="margin-top: {{ top }}px;">
             <div class="login-type-box" v-if="mode < 1">
                 <div class="logo">
@@ -7,7 +8,7 @@
                 </div>
 
                 <button class="auth-btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="tapAuth">
-                    <i class="fa fa-wechat"></i> 微信登录</button>
+                    <i class="iconfont icon-wechat"></i> 微信登录</button>
                 <span @click="tapMode" data-mode="3" class="btn btn-none">邮箱登录</span>
                 <span @click="tapMode" data-mode="5">邮箱注册</span>
             </div>
@@ -37,6 +38,7 @@ const app = getApp<IMyApp>();
 
 interface IPageData {
     top: number;
+    title: string;
     mode: number;
     site: ISite | null;
 }
@@ -55,6 +57,7 @@ export class Index extends WxPage<IPageData> {
     public data: IPageData = {
         top: app.getNavbarHeight(),
         mode: 0,
+        title: '登录',
         site: null
     };
 
@@ -84,10 +87,11 @@ export class Index extends WxPage<IPageData> {
             '邮箱注册',
             '找回密码'
         ];
+        const title = mode >= 0 && mode < titles.length ? titles[mode] : titles[0];
         wx.setNavigationBarTitle({
-            title: mode >= 0 && mode < titles.length ? titles[mode] : titles[0] 
+            title,
         });
-        this.setData({mode});
+        this.setData({mode, title});
     }
 
     public tapLoginBack() {

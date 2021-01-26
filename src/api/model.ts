@@ -34,6 +34,8 @@ export interface IUser {
     token?: string;
     birthday?: string;
     sex?: number;
+    video_count?: number;
+    like_count?: number;
 }
 
 export interface ILogin {
@@ -58,6 +60,21 @@ export interface ISite {
     name: string;
     version: string;
     logo: string;
+}
+
+export interface IArticle {
+    id: number,
+    title: string,
+    thumb: string,
+    url?: string,
+    content: string
+}
+
+export interface ICheckIn {
+    id: number,
+    created_at: string,
+    running: number,
+    type: number
 }
 
 export interface IMusic {
@@ -88,6 +105,7 @@ export interface IVideo {
     status: number;
     created_at: string;
     updated_at: string;
+    user_id: number;
     user?: IUser;
     is_liked?: boolean;
 }

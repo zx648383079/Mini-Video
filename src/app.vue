@@ -40,11 +40,18 @@ export interface IMyApp {
 
         "pages/video/index",
         "pages/video/add",
+        'pages/video/history',
+        'pages/video/user',
 
         "pages/member/index",
         "pages/member/profile",
         "pages/member/login",
         "pages/member/password",
+
+        'pages/feedback/index',
+        'pages/help/index',
+        'pages/help/detail',
+        'pages/checkin/index'
     ],
     window: {
         backgroundTextStyle: "light",
@@ -62,6 +69,7 @@ export interface IMyApp {
     usingComponents: {
         Navbar: "/components/navbar/index",
         TabBar: "/custom-tab-bar/index",
+        EditHeader: '/components/EditHeader/index',
     },
 })
 export class Application extends WxApp<IAppData> implements IMyApp {
@@ -228,8 +236,8 @@ export class Application extends WxApp<IAppData> implements IMyApp {
     top: 0;
     left: 0;
     right: 0;
-    background-color: $primary;
-    color: $primaryText;
+    background-color: $edit;
+    color: $editText;
     z-index: 888;
     .bar {
         height: 44px;
@@ -250,7 +258,7 @@ export class Application extends WxApp<IAppData> implements IMyApp {
     }
     .title {
         font-weight: 700;
-        color: $color;
+        color: #fff;
     }
 }
 
@@ -329,20 +337,22 @@ export class Application extends WxApp<IAppData> implements IMyApp {
   }
 }
 
+.top-bar {
+    background: $edit;
+}
 .large-header {
-    background-color: $primary;
-    color: $primaryText;
-    height: 100px;
+    background-color: $edit;
+    color: $editText;
+    height: 150px;
     position: relative;
     margin-bottom: 20px;
     .title {
-        padding: 40px 0 0 20px;
+        padding: 80px 0 0 20px;
         font-size: 30px;
     }
-    .iconfont {
+    .action-icon {
         position: absolute;
         bottom: -20px;
-        font-size: 30px;
         display: block;
         width: 40px;
         height: 40px;
@@ -351,6 +361,18 @@ export class Application extends WxApp<IAppData> implements IMyApp {
         right: 20px;
         border-radius: 50%;
         background-color: #1d8686;
+        .iconfont {
+            font-size: 30px;
+        }
+        &.disabled {
+            background-color: #506969;
+            cursor: not-allowed;
+        }
+    }
+    .back-icon {
+        position: absolute;
+        left: 10px;
+        line-height: 44px;
     }
 }
 
@@ -484,5 +506,19 @@ export class Application extends WxApp<IAppData> implements IMyApp {
 .btn-primary {
     background-color: $btn;
     color: $btnText;
+}
+
+.empty-box {
+    line-height: 40px;
+    text-align: center;
+    font-size: 30px;
+    color: #999;
+    margin-top: 30vh;
+}
+
+.no-more-tip {
+    text-align: center;
+    color: #ccc;
+    line-height: 60px;
 }
 </style>

@@ -18,7 +18,7 @@
         <div class="menu-list">
             <MenuItem title="签到" icon="icon-et-checking-in" uri="/pages/checkin/index" v-if="user"/>
             <MenuItem title="浏览历史" icon="icon-history" uri="/pages/video/history"/>
-            <MenuItem title="帮助" icon="icon-help" uri="/pages/article/index"/>
+            <MenuItem title="帮助" icon="icon-help" uri="/pages/help/index"/>
             <MenuItem title="反馈" icon="icon-comment" uri="/pages/feedback/index"/>
         </div>
         <TabBar selected="2"/>
@@ -79,18 +79,16 @@ export class Index extends WxPage<IPageData> {
 }
 </script>
 <style lang="scss" scoped>
+@import '../../theme';
 page {
-    background-color: #f4f4f4;
-}
-.top-bar {
-    background: #05a6b1;
+    background-color: $bg;
 }
 .user-header {
     position: relative;
     padding-top: 1.5625rem;
     padding-bottom: 1.875rem;
-    background: #05a6b1;
-
+    background: $edit;
+    color: $editText;
     .avatar {
         width: 5.625rem;
         height: 5.625rem;

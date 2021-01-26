@@ -1,9 +1,6 @@
 <template>
     <div>
-        <div class="large-header">
-            <div class="title">修改密码</div>
-            <i class="fa fa-check" @click="tapSubmit"></i>
-        </div>
+        <EditHeader title="修改密码" @submited="tapSubmit"/>
         <div class="input-box">
             <input type="password" placeholder="旧密码(未设可随便填入6位字符)" required  v-model="oldpassword">
         </div>
