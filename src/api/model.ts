@@ -38,6 +38,12 @@ export interface IUser {
     like_count?: number;
 }
 
+export interface IDriver {
+    id?: number;
+    name: string;
+    created_at: string;
+}
+
 export interface ILogin {
     email?: string;
     password?: string;

@@ -3,15 +3,16 @@
         <Navbar title="我的足迹"/>
         <div class="main-box" style="margin-top: {{ top }}px;">
             <div class="slide-box">
-                <div class="swipe-box goods-list">
-                    <div class="item" v-for="(item, index) in items" :key="index" :index="item.id">
+                <div class="two-grid">
+                    <div class="video-item" v-for="(item, index) in items" :key="index" @click="tapView(index)">
+                        <img :src="item.cover" mode="widthFix">
                     </div>
                 </div>
                 <div class="empty-box" v-if="!items || items.length < 1">
                     您没有浏览记录
                 </div>
             </div>
-            <div class="add-btn" @click="tapClear">清空</div>
+            <div class="btn-primary" @click="tapClear">清空</div>
         </div>
     </div>
 </template>
@@ -160,9 +161,6 @@ export class History extends WxPage<IPageData> {
 
     private formatButton(res: any[]): any[] {
         return res.map(item => {
-            if (item.name.length > 15) {
-                item.name = item.name.substr(0, 15) + '...';
-            }
             item.buttons = [
                 {
                     type: 'warn',
@@ -176,10 +174,35 @@ export class History extends WxPage<IPageData> {
 }
 </script>
 <style lang="scss" scoped>
+@import '../../theme';
 page {
-    background-color:#f4f4f4;
+    background-color: $bg;
 }
 .item {
     margin-bottom:10px;
+}
+.main-box {
+    padding-bottom: 80px;
+}
+.btn-primary {
+    position: fixed;
+    bottom: 10px;
+    right: 20%;
+    left: 20%;
+}
+.two-grid {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0.9375rem;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: .5rem;
+}
+.video-item {
+    image {
+        width: 100%;
+    }
 }
 </style>

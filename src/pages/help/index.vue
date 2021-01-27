@@ -11,7 +11,7 @@
                 <block v-for="(item, index) in items" :key="index">
                     <a href="/pages/help/detail?id={{ item.id }}" class="line-item">
                         {{ item.title }}
-                        <div class="icon-right">></div>
+                        <i class="iconfont icon-chevron-right"></i>
                     </a>
                 </block>
             </div>
@@ -110,6 +110,9 @@ export class History extends WxPage<IPageData> {
 page {
     background-color: $bg;
 }
+.main-box {
+    padding-top: 10px;
+}
 .search-box {
     margin: 10px;
     line-height: 30px;
@@ -134,5 +137,6 @@ page {
         border-bottom: 1px solid #ccc;
         padding: 0 10px;
     }
+
 }
 </style>

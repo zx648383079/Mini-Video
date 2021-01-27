@@ -3,28 +3,24 @@
          <Navbar title="个人信息"/>
         <div class="main-box" style="margin-top: {{ top }}px;">
             <div class="profile-box" v-if="user">
-                <div class="line-item avatar-item" @click="tapAvatar">
-                    <i></i>
+                <div class="edit-line avatar-item" @click="tapAvatar">
                     <span>头像</span>
                     <span class="avatar">
                         <img :src="user.avatar" alt="">
                     </span>
                     <i class="iconfont icon-chevron-right"></i>
                 </div>
-                <div class="line-item" @click="tapName">
-                    <i></i>
+                <div class="edit-line" @click="tapName">
                     <span>昵称</span>
                     <span>{{user.name}}</span>
                     <i class="iconfont icon-chevron-right"></i>
                 </div>
-                <div class="line-item">
-                    <i></i>
+                <div class="edit-line">
                     <span>邮箱</span>
                     <span class="auto-hide">{{user.email}}</span>
                     <i class="iconfont icon-chevron-right"></i>
                 </div>
-                <div class="line-item" @click="tapSex">
-                    <i></i>
+                <div class="edit-line" @click="tapSex">
                     <span>性别</span>
                     <span>{{sex}}</span>
                     <i class="iconfont icon-chevron-right"></i>
@@ -35,7 +31,7 @@
                     start="1930-01-01"
                     end="{{ max }}"
                     bindchange="bindDateChange" >
-                    <div class="line-item">
+                    <div class="edit-line">
                         <span>生日</span>
                         <span>{{user.birthday}}</span>
                         <i class="iconfont icon-chevron-right"></i>
@@ -185,18 +181,45 @@ page {
     background-color: #fff;
 }
 .profile-box {
-    .avatar-item {
-        border-top: none;
-        .avatar {
-            float: right;
-            margin-right: 1.25rem;
+    background-color: #fff;
+    margin-bottom: 50px;
+    .edit-line {
+        position: relative;
+        line-height: 1.875rem;
+        border-top: $hr;
+
+        .iconfont {
+            position: absolute;
+            right: 0.3125rem;
+            top: 0;
         }
-    }
-    .line-item {
+
         text {
             &:nth-child(2) {
                 float: right;
                 margin-right: 1.25rem;
+            }
+        }
+    }
+    .avatar-item {
+        border-top: none;
+        line-height: 5rem;
+
+        .iconfont {
+            top: 0;
+        }
+
+        .avatar {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            padding: 5px;
+            box-sizing: border-box;
+            float: right;
+            margin-right: 1.25rem;
+            image {
+                width: 70px;
+                height: 70px;
             }
         }
     }
@@ -207,5 +230,9 @@ page {
     word-wrap: unset;
     word-break: keep-all;
     height: 1.875rem;
+}
+.btn-primary {
+    margin: 50px 10px 0;
+    display: block;
 }
 </style>

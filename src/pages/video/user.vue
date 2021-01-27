@@ -9,6 +9,14 @@
                 <div class="name">
                     {{ user.name }}
                 </div>
+                <div class="user-bar">
+                    <div class="btn-item">
+                        {{ user.video_count }} 视频
+                    </div>
+                     <div class="btn-item">
+                        {{ user.like_count }} 关注
+                    </div>
+                </div>
             </div>
             
             <div class="two-grid">
@@ -108,6 +116,7 @@ export class User extends WxPage<IPageData> {
             user: this.data.user?.id,
             page,
         }).then(res => {
+            wx.stopPullDownRefresh();
             this.setData({
                 page: page,
                 hasMore: res.paging.more,
@@ -130,9 +139,9 @@ page {
 .user-header {
     position: relative;
     padding-top: 1.5625rem;
-    padding-bottom: 1.875rem;
-    background: #05a6b1;
-
+    padding-bottom: 0;
+    background: $edit;
+    color: $editText;
     .avatar {
         width: 5.625rem;
         height: 5.625rem;
@@ -167,6 +176,13 @@ page {
         navigator {
             display: inline;
         }
+    }
+    .user-bar {
+        padding: 30px 20% 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        color: #fff;
     }
 }
 .two-grid {

@@ -64,8 +64,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/checkin/index",
-          "pathName": "pages/checkin/index",
+          "name": "pages/help/index",
+          "pathName": "pages/help/index",
           "query": "id=1",
           "scene": null
         }

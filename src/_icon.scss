@@ -9,6 +9,14 @@
     font-style: normal;
 }
 
+.icon-square-o:before {
+    content: "\e71e";
+}
+
+.icon-check-square-o:before {
+    content: "\e646";
+}
+
 .icon-calendar-check:before {
     content: "\ef5b";
 }
